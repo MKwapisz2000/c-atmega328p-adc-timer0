@@ -1,6 +1,3 @@
-//Użycie ADC wraz z przerwaniami wewnętrznymi przez Timer0 compare match A
-//bez użycia trigger source
-
 #include <avr/io.h>
 #include <util/delay.h>
 #include <avr/interrupt.h>
@@ -43,13 +40,6 @@ void ADC_init()
 
   //włączenie przerwan
   ADCSRA |= (1<<ADIE);
-
-  //auto trigger
-  //ADCSRA |= (1<<ADATE);
-
-  //wybranie trybu przerwań-Timer0 Compare match A
-  //ADCSRB |= (1<<ADTS0);
-  //ADCSRB |= (1<<ADTS1);
   
   //włączenie ADC
   ADCSRA |= (1<<ADEN);
@@ -119,8 +109,6 @@ ISR(ADC_vect)
 
     licznik = 0;
   }
-  
-
 }
 
 ISR(TIMER0_COMPA_vect)
